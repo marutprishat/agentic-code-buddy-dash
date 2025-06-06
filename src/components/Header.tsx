@@ -59,7 +59,12 @@ export const Header = ({ activeSection, setActiveSection }: HeaderProps) => {
 
           {/* User Actions */}
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setActiveSection('achievements')}
+              className={activeSection === 'achievements' ? 'bg-gray-100' : ''}
+            >
               <Trophy className="h-5 w-5" />
             </Button>
             <Button 
@@ -95,6 +100,13 @@ export const Header = ({ activeSection, setActiveSection }: HeaderProps) => {
                 >
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="cursor-pointer hover:bg-gray-50"
+                  onClick={() => setActiveSection('achievements')}
+                >
+                  <Trophy className="mr-2 h-4 w-4" />
+                  <span>Achievements</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer hover:bg-gray-50">
                   <HelpCircle className="mr-2 h-4 w-4" />

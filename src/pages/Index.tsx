@@ -7,6 +7,7 @@ import { ProgressDashboard } from '@/components/ProgressDashboard';
 import { CodeChallenges } from '@/components/CodeChallenges';
 import { QuickActions } from '@/components/QuickActions';
 import { SettingsPage } from '@/components/SettingsPage';
+import { AchievementsPage } from '@/components/AchievementsPage';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('chat');
@@ -21,6 +22,8 @@ const Index = () => {
         return <CodeChallenges />;
       case 'settings':
         return <SettingsPage />;
+      case 'achievements':
+        return <AchievementsPage />;
       default:
         return <ChatInterface />;
     }
@@ -31,7 +34,7 @@ const Index = () => {
       <Header activeSection={activeSection} setActiveSection={setActiveSection} />
       
       <main className="container mx-auto px-4 py-8 max-w-7xl">
-        {activeSection !== 'settings' && (
+        {activeSection !== 'settings' && activeSection !== 'achievements' && (
           <>
             {/* Welcome Section */}
             <div className="mb-8 animate-fade-in">
@@ -49,8 +52,8 @@ const Index = () => {
         )}
 
         {/* Main Content Area */}
-        {activeSection === 'settings' ? (
-          <SettingsPage />
+        {activeSection === 'settings' || activeSection === 'achievements' ? (
+          renderMainContent()
         ) : (
           <div className="grid lg:grid-cols-3 gap-8 mt-8">
             {/* Primary Content */}
