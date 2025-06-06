@@ -1,7 +1,15 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { MessageSquare, BookOpen, Code, Trophy, Settings, User } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { MessageSquare, BookOpen, Code, Trophy, Settings, User, LogOut, UserCog, Bell, HelpCircle } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;
@@ -54,12 +62,51 @@ export const Header = ({ activeSection, setActiveSection }: HeaderProps) => {
             <Button variant="ghost" size="icon">
               <Trophy className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setActiveSection('settings')}
+              className={activeSection === 'settings' ? 'bg-gray-100' : ''}
+            >
               <Settings className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="bg-gray-100">
-              <User className="h-5 w-5" />
-            </Button>
+            
+            {/* Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="bg-gray-100 hover:bg-gray-200">
+                  <User className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 bg-white">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer hover:bg-gray-50">
+                  <UserCog className="mr-2 h-4 w-4" />
+                  <span>Profile Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer hover:bg-gray-50">
+                  <Bell className="mr-2 h-4 w-4" />
+                  <span>Notifications</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="cursor-pointer hover:bg-gray-50"
+                  onClick={() => setActiveSection('settings')}
+                >
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer hover:bg-gray-50">
+                  <HelpCircle className="mr-2 h-4 w-4" />
+                  <span>Help & Support</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="cursor-pointer hover:bg-gray-50 text-red-600">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
