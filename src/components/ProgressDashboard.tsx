@@ -42,10 +42,10 @@ export const ProgressDashboard = () => {
                 </div>
                 <div className="text-lg font-bold text-gray-900">
                   {stat.value}{stat.unit && stat.unit}
-                  {stat.total && `/${stat.total}`}
+                  {stat.total && typeof stat.value === 'number' && `/${stat.total}`}
                 </div>
                 <div className="text-xs text-gray-600">{stat.label}</div>
-                {stat.total && (
+                {stat.total && typeof stat.value === 'number' && (
                   <Progress value={(stat.value / stat.total) * 100} className="h-1 mt-1" />
                 )}
               </div>
